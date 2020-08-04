@@ -53,4 +53,16 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+  hooks: {
+    render: {
+      errorMiddleware(app) {
+        app.use((error, _req, _res, next) => {
+          if (error) {
+            console.log('Logged in errorMiddleware', error)
+          }
+          next(error)
+        })
+      },
+    },
+  },
 }
